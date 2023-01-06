@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -10,15 +11,14 @@ public class DialogueSystem : MonoBehaviour
 
     [SerializeField] int triggersS;
     [SerializeField] GameObject picture;
-    [SerializeField] GameObject chBg;
     [SerializeField] GameObject textBg;
     [SerializeField] GameObject SButton;
-    [SerializeField] Text pressS;
+    [SerializeField] TextMeshProUGUI pressS;
 
     //dialogue system stuff
 
     [SerializeField] int closeDialogeSystem = 0;
-    [SerializeField] Text text;
+    [SerializeField] TextMeshProUGUI text;
     [SerializeField] List<string> lines;
 
     [SerializeField] [Range(0f, 1f)] float visibleTextPercent;
@@ -116,7 +116,6 @@ public class DialogueSystem : MonoBehaviour
     public void Ignore()
     {
         picture.SetActive(false);
-        chBg.SetActive(false);
         textBg.SetActive(false);
         pressS.text = "";
         SButton.SetActive(false);
@@ -127,7 +126,6 @@ public class DialogueSystem : MonoBehaviour
     void Publish()
     {
         picture.SetActive(true);
-        chBg.SetActive(true);
         textBg.SetActive(true);
         pressS.text = "Press 's'";
     }
