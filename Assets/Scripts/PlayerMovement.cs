@@ -42,6 +42,15 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(10f, 20f);
 
+    //dash
+    private TrailRenderer _trailrenderer;
+    [Header("Dashing")]
+    [SerializeField] private float _dashingVelocity = 5f;
+    [SerializeField] private float _dashingTime = 0.1f;
+    private Vector2 _dashingDir;
+    private bool isDashing;
+    private bool canDash = true;
+
 
     void Start()
     {
@@ -49,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
+        _trailrenderer = GetComponent<TrailRenderer>();
     }
 
     void Update()
@@ -57,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimationUpdate();
         WallSlide();
         WallJump();
+        Dashing();
 
         if(!isWallJumping)
         {
@@ -235,5 +246,43 @@ public class PlayerMovement : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+
+    private void Dashing()
+    {
+        var dashInput = Input.GetButtonDown("Dash");
+
+        if (dashInput && canDash)
+        {
+            isDashing = true;
+            canDash = false;
+            _trailrenderer.emitting = true;
+            _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (_dashingDir == Vector2.zero)
+            {
+                _dashingDir = new Vector2(transform.localScale.x, 0);
+            }
+
+            StartCoroutine(StopDashing());
+
+        }
+
+        if (isDashing)
+        {
+            rb.velocity = _dashingDir.normalized * _dashingVelocity;
+            return;
+        }
+        if (IsGrounded())
+        {
+            canDash = true;
+        }
+    }
+    private IEnumerator StopDashing()
+    {
+        yield return new WaitForSeconds(_dashingTime);
+        _trailrenderer.emitting = false;
+        isDashing = false;
+
     }
 }
