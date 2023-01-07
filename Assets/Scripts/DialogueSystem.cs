@@ -115,6 +115,11 @@ public class DialogueSystem : MonoBehaviour
     }
     public void Ignore()
     {
+        picture.gameObject.SetActive(false);
+        textBg.gameObject.SetActive(false);
+        SButton.gameObject.SetActive(false);
+
+
         picture.SetActive(false);
         textBg.SetActive(false);
         pressS.text = "";
@@ -125,6 +130,9 @@ public class DialogueSystem : MonoBehaviour
     }
     void Publish()
     {
+        picture.gameObject.SetActive(true);
+        textBg.gameObject.SetActive(true);
+
         picture.SetActive(true);
         textBg.SetActive(true);
         pressS.text = "Press 's'";
