@@ -47,13 +47,13 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7600324649449904265}
-    m_Position: {x: 520, y: 200, z: 0}
+    m_Position: {x: 520, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7126084058437189975}
-    m_Position: {x: 270, y: 200, z: 0}
+    m_Position: {x: 260, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5189257587599864003}
-    m_Position: {x: 410, y: 120, z: 0}
+    m_Position: {x: 400, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2420916674242027643}
     m_Position: {x: -30, y: 40, z: 0}
@@ -447,19 +447,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Death
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Reborn
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

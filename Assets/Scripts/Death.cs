@@ -11,7 +11,6 @@ public class Death : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
     void Update()
@@ -36,7 +35,7 @@ public class Death : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        transform.position = new Vector2(0, 0);
+        transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY);
         anim.SetTrigger("Reborn");
 
     }

@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
     //dash
     private TrailRenderer _trailrenderer;
     [Header("Dashing")]
-    [SerializeField] private float _dashingVelocity = 5f;
-    [SerializeField] private float _dashingTime = 0.1f;
+    public float _dashingVelocity = 5f;
+    public float _dashingTime = 10f;
     private Vector2 _dashingDir;
     private bool isDashing;
     private bool canDash = true;
@@ -281,6 +281,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(_dashingTime);
+        rb.velocity = new Vector2(0, 0);
         _trailrenderer.emitting = false;
         isDashing = false;
 
