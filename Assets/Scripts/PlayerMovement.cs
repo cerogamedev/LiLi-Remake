@@ -52,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
 
 
+    //stamina
+    public static float maxStamina = 99;
+    public float currentStamina = 100;
+    public StaminaBar staminabar;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
         _trailrenderer = GetComponent<TrailRenderer>();
+        currentStamina = maxStamina;
     }
 
     void Update()
@@ -68,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         WallJump();
         Dashing();
+        StaminaOptions();
 
         if(!isWallJumping)
         {
@@ -84,7 +91,16 @@ public class PlayerMovement : MonoBehaviour
         float dirX = Input.GetAxisRaw("Horizontal");
         if ((!IsWalled() || IsGrounded()) && !isWallJumping)
         {
-            rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
+            if (currentStamina > 10)
+            {
+                rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
+
+            }
+            else
+            {
+                rb.velocity = new Vector2(dirX * activeMovespeed/4, rb.velocity.y);
+
+            }
 
         }
 
@@ -109,9 +125,10 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
 
-        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && !isJumping )
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && !isJumping && currentStamina>10)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower) ;
+            currentStamina -= 10;
 
             jumpBufferCounter = 0f;
 
@@ -123,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCounter = 0f;
+
         }
 
     }
@@ -184,6 +202,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        
+
     }
     public void WallSlide()
     {
@@ -192,6 +212,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            
+
         }
         else
         {
@@ -253,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var dashInput = Input.GetButtonDown("Dash");
 
-        if (dashInput && canDash)
+        if (dashInput && canDash && currentStamina>0)
         {
             isDashing = true;
             canDash = false;
@@ -285,5 +307,16 @@ public class PlayerMovement : MonoBehaviour
         _trailrenderer.emitting = false;
         isDashing = false;
 
+    }
+
+    public void StaminaOptions()
+    {
+        staminabar.SetMaxStamina(maxStamina);
+        staminabar.SetStamina(currentStamina);
+
+        if (currentStamina < maxStamina)
+        {
+            currentStamina += (Time.deltaTime*6);
+        }
     }
 }
