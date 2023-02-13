@@ -44,7 +44,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (triggersS == 1)
         {
-            if (Input.GetKeyDown("s"))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Publish();
                 PushText();
@@ -135,7 +135,7 @@ public class DialogueSystem : MonoBehaviour
 
         picture.SetActive(true);
         textBg.SetActive(true);
-        pressS.text = "Press 's'";
+        pressS.text = "Press 'space'";
     }
 
     void closeDialogueSystem()

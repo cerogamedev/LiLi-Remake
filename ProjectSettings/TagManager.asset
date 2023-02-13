@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trap
   - CheckPoint
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX

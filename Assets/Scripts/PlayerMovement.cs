@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float Horizontal;
-    
+    public GameObject LiLi;
+
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
@@ -58,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     public StaminaBar staminabar;
 
 
+    CheckPointSystem checkpointsystem;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -90,17 +93,22 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         float dirX = Input.GetAxisRaw("Horizontal");
-        if ((!IsWalled() || IsGrounded()) && !isWallJumping)
+        if (((!IsWalled() || IsGrounded()) && !isWallJumping ))
         {
-            if (currentStamina > 10)
+            if (currentStamina > 10 && (LiLi.transform.position.x > (CheckPointSystem.CheckPointX -6)) && dirX<0)
+            {
+                rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
+
+            }
+            else if (currentStamina > 10 && (LiLi.transform.position.x < (CheckPointSystem.CheckPointX + 30)) && dirX > 0)
             {
                 rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
 
             }
             else
             {
-                rb.velocity = new Vector2(dirX * activeMovespeed/4, rb.velocity.y);
-
+                //rb.velocity = new Vector2(dirX * activeMovespeed/4, rb.velocity.y);
+                rb.velocity = new Vector2(0,rb.velocity.y);
             }
 
         }
