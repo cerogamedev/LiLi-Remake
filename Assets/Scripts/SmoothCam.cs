@@ -8,6 +8,8 @@ public class SmoothCam : MonoBehaviour
     [SerializeField] float timeOffset;
     [SerializeField] Vector2 posOffset;
 
+    public float leftOrder, rightOrder;
+
     private Vector3 velocity;
 
     private void Update()
@@ -21,7 +23,7 @@ public class SmoothCam : MonoBehaviour
 
         transform.position = Vector3.Lerp(startPos, endPos, timeOffset * Time.deltaTime);
 
-        SetLeftToBottomBound(CheckPointSystem.CheckPointX - 3, CheckPointSystem.CheckPointX + 30, -2, +2);
+        SetLeftToBottomBound(CheckPointSystem.CheckPointX - leftOrder, CheckPointSystem.CheckPointX + rightOrder, -2, +2);
     }
 
 

@@ -95,12 +95,12 @@ public class PlayerMovement : MonoBehaviour
         float dirX = Input.GetAxisRaw("Horizontal");
         if (((!IsWalled() || IsGrounded()) && !isWallJumping ))
         {
-            if (currentStamina > 10 && (LiLi.transform.position.x > (CheckPointSystem.CheckPointX -6)) && dirX<0)
+            if (currentStamina > 10 && (LiLi.transform.position.x > (CheckPointSystem.CheckPointX -1)) && dirX<0)
             {
                 rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
 
             }
-            else if (currentStamina > 10 && (LiLi.transform.position.x < (CheckPointSystem.CheckPointX + 30)) && dirX > 0)
+            else if (currentStamina > 10 && (LiLi.transform.position.x < (CheckPointSystem.CheckPointX + 55)) && dirX > 0)
             {
                 rb.velocity = new Vector2(dirX * activeMovespeed, rb.velocity.y);
 
