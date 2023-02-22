@@ -7,6 +7,7 @@ TagManager:
   - Trap
   - CheckPoint
   - OneWayPlatform
+  - Teleporter
   layers:
   - Default
   - TransparentFX
