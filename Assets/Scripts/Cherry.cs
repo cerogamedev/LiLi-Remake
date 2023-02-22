@@ -11,18 +11,7 @@ public class Cherry : MonoBehaviour
         anim = GetComponent<Animator>();
         cherryInt = 0;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            TriggerAnim();
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
             TriggerAnim();

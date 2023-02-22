@@ -58,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
     public float currentStamina = 100;
     public StaminaBar staminabar;
 
+    //doublejump
+    private bool doubleJump;
+
 
     CheckPointSystem checkpointsystem;
 
@@ -114,10 +117,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //jump with coyote
+        //jump with coyote and double jump
+        if (IsGrounded() && !Input.GetButton("Vertical"))
+        {
+            doubleJump = false;
+        }
+
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
+            
         }
         else
         {
@@ -127,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Vertical"))
         {
             jumpBufferCounter = jumpBufferTime;
-
         }
         else
         {
@@ -140,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
             currentStamina -= 10;
 
             jumpBufferCounter = 0f;
+            
 
             StartCoroutine(JumpCooldown());
         }
@@ -150,6 +159,14 @@ public class PlayerMovement : MonoBehaviour
 
             coyoteTimeCounter = 0f;
 
+
+        }
+        if (doubleJump && Input.GetButtonDown("Vertical") && currentStamina > 10)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            currentStamina -= 10;
+
+            doubleJump = false;
         }
 
     }
@@ -199,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         yield return new WaitForSeconds(0.4f);
         isJumping = false;
+        doubleJump = !doubleJump;
     }
 
 
