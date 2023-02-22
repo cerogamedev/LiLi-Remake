@@ -9,7 +9,6 @@ public class CheckPointSystem : MonoBehaviour
     public GameObject glow;
 
 
-
     SmoothCam smoothcam;
 
 
@@ -18,11 +17,12 @@ public class CheckPointSystem : MonoBehaviour
         CheckPointX = 0;
         CheckPointY = 0;
         glow.gameObject.SetActive(false);
+        
     }
 
     void Update()
     {
-
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
