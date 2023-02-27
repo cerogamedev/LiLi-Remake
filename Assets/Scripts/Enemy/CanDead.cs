@@ -22,6 +22,8 @@ public class CanDead : MonoBehaviour
             anim.Play("Death");
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             cc2d.enabled = !cc2d.enabled;
+            Death();
+
         }
     }
     public void Death()
