@@ -26,7 +26,7 @@ public class TurretSC : MonoBehaviour
         Direction = targetPos - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);
         if (rayInfo)
-            if (rayInfo.collider.gameObject.tag == "Player")
+            if (rayInfo.collider.gameObject.tag == "Player" || rayInfo.collider.gameObject.tag == "Bug" )
             {
                 if (Detected == false)
                 {
