@@ -13,7 +13,9 @@ public class Death : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
+
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bug"))
@@ -35,6 +37,5 @@ public class Death : MonoBehaviour
         transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY);
         anim.SetTrigger("Reborn");
         _collider.enabled = !_collider.enabled;
-
     }
 }
