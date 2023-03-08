@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TurretSC : MonoBehaviour
 {
+    private GameObject[] bugTargets;
+
+
+
+
     public float Range;
     public Transform Target;
     bool Detected = false;
@@ -14,19 +19,23 @@ public class TurretSC : MonoBehaviour
     float nextTimeToFire = 0;
     public Transform shootPoint;
     public float Force;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
+
+
+        
+        
         Vector2 targetPos = Target.position;
         Direction = targetPos - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);
         if (rayInfo)
-            if (rayInfo.collider.gameObject.tag == "Player" || rayInfo.collider.gameObject.tag == "Bug" )
+            if (rayInfo.collider.gameObject.tag == "Player")
             {
                 if (Detected == false)
                 {

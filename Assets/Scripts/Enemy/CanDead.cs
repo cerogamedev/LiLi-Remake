@@ -17,7 +17,7 @@ public class CanDead : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "AttackHitBox")
+        if (collision.gameObject.name == "AttackHitBox" || collision.gameObject.name == "Bullet")
         {
             anim.Play("Death");
             rb.constraints = RigidbodyConstraints2D.FreezeAll;

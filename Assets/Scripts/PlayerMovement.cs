@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = false;
         }
-        if (IsWalled())
+        if (IsWalled() && !IsGrounded())
         {
             currentStamina -= 0.2f;
 
