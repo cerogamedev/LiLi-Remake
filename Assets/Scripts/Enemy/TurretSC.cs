@@ -25,6 +25,36 @@ public class TurretSC : MonoBehaviour
 
     void Update()
     {
+        Vector2 targetPos = Target.position;
+        Direction = targetPos - (Vector2)transform.position;
+        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);
+        if (rayInfo)
+            if (rayInfo.collider.gameObject.tag == "Player")
+            {
+                if (Detected == false)
+                {
+                    Detected = true;
+
+                }
+                else
+                {
+                    if (Detected == true)
+                    {
+                        Detected = false;
+
+                    }
+                }
+                if (Detected)
+                {
+                    gun.transform.up = Direction;
+                    if (Time.time > nextTimeToFire)
+                    {
+                        nextTimeToFire = Time.time + 1 / FireRate;
+                        Shoot();
+                    }
+                }
+            }
+
         if (bugTarget == null)
             return;
         else
@@ -59,35 +89,7 @@ public class TurretSC : MonoBehaviour
                     }
                 }
         }       
-        Vector2 targetPos = Target.position;
-        Direction = targetPos - (Vector2)transform.position;
-        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);
-        if (rayInfo)
-            if (rayInfo.collider.gameObject.tag == "Player")
-            {
-                if (Detected == false)
-                {
-                    Detected = true;
-
-                }
-                else
-                {
-                    if(Detected==true)
-                    {
-                        Detected = false;
-
-                    }
-                }
-                if (Detected)
-                {
-                    gun.transform.up = Direction;
-                    if (Time.time > nextTimeToFire)
-                    {
-                        nextTimeToFire = Time.time + 1 / FireRate;
-                        Shoot();
-                    }
-                }
-            }
+ 
     }
     void Shoot()
     {
