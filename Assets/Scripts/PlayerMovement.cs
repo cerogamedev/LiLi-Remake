@@ -347,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentStamina < maxStamina)
         {
-            currentStamina += (Time.deltaTime*5);
+            currentStamina += (Time.deltaTime*11);
         }
     }
 }
