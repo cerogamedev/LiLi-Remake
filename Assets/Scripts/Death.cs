@@ -23,7 +23,7 @@ public class Death : MonoBehaviour
             Die();
         }
     }
-    private void Die()
+    public void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
         _collider.enabled = !_collider.enabled;
