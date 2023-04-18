@@ -10,6 +10,7 @@ TagManager:
   - Teleporter
   - Bug
   - Order-Pure
+  - Ladder
   layers:
   - Default
   - TransparentFX

@@ -23,7 +23,7 @@ public class SmoothCam : MonoBehaviour
 
         transform.position = Vector3.Lerp(startPos, endPos, timeOffset * Time.deltaTime);
 
-        SetLeftToBottomBound(CheckPointSystem.CheckPointX - leftOrder, CheckPointSystem.CheckPointX + rightOrder, -2, +2);
+        SetLeftToBottomBound(CheckPointSystem.CheckPointX - leftOrder, CheckPointSystem.CheckPointX + rightOrder, -4, +8);
     }
 
 
