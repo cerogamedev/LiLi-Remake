@@ -12,7 +12,7 @@ public class PlayerTeleporter : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (currentTeleporter != null)
             {

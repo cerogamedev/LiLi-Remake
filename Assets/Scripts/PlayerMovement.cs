@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     //movement
     public float activeMovespeed;
-    private float dirX = 0f;
+    //private float dirX = 0f;
     [SerializeField] private LayerMask jumpableGround;
     private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;

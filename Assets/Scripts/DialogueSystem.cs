@@ -8,6 +8,7 @@ public class DialogueSystem : MonoBehaviour
 {
     [SerializeField] GameObject character;
     // ui stuff
+    private bool _isOutside;
 
     [SerializeField] int triggersS;
     [SerializeField] GameObject picture;
@@ -39,6 +40,8 @@ public class DialogueSystem : MonoBehaviour
         TypeOutText();
         TriggerS();
         closeDialogueSystem();
+        if (_isOutside == true)
+            text.text = "";
     }
     void TriggerS()
     {
@@ -107,11 +110,15 @@ public class DialogueSystem : MonoBehaviour
         {
             SButton.SetActive(true);
             triggersS = 1;
+            _isOutside = false;
         }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         Ignore();
+        text.text = "";
+        _isOutside = true;
     }
     public void Ignore()
     {

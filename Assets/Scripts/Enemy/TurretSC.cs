@@ -8,7 +8,7 @@ public class TurretSC : MonoBehaviour
     Vector2 bugDirection;
     
     public float Range;
-    public Transform Target;
+    private Transform Target;
     bool Detected = false;
     Vector2 Direction;
     public GameObject gun;
@@ -25,6 +25,7 @@ public class TurretSC : MonoBehaviour
 
     void Update()
     {
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
         Vector2 targetPos = Target.position;
         Direction = targetPos - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);

@@ -25,17 +25,23 @@ public class Death : MonoBehaviour
     }
     public void Die()
     {
-        rb.bodyType = RigidbodyType2D.Static;
-        _collider.enabled = !_collider.enabled;
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //rb.bodyType = RigidbodyType2D.Static;
+        //_collider.enabled = !_collider.enabled;
         anim.SetTrigger("Death");
+        transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY + 4);
+        anim.SetTrigger("Reborn");
 
     }
     public void ReBorn()
     {
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+        
+
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY);
+        //transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY+4);
         anim.SetTrigger("Reborn");
-        _collider.enabled = !_collider.enabled;
+        //_collider.enabled = !_collider.enabled;
+        //transform.position = new Vector2(CheckPointSystem.CheckPointX, CheckPointSystem.CheckPointY+4);
     }
 }

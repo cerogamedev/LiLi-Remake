@@ -7,7 +7,7 @@ public class Gripple : MonoBehaviour
     public Camera cam;
     public LineRenderer lr;
     public LayerMask grappleMask;
-    public float moveSpeed = 2;
+    public float moveSpeed = -0.6f;
     public float grappleLength = 5;
     [Min(1)]
     public int maxPoints = 3;
@@ -24,11 +24,11 @@ public class Gripple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) )
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
-
+            Cherry.cherryInt -= 1;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, grappleLength, grappleMask);
             if (hit.collider != null)
             {
@@ -45,7 +45,7 @@ public class Gripple : MonoBehaviour
         if (points.Count > 0)
         {
             Vector2 moveTo = centriod(points.ToArray());
-            rig.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
+            rig.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime *moveSpeed));
 
             lr.positionCount = 0;
             lr.positionCount = points.Count * 2;
@@ -66,6 +66,7 @@ public class Gripple : MonoBehaviour
     {
         lr.positionCount = 0;
         points.Clear();
+        rig.velocity = Vector2.zero;
     }
 
     Vector2 centriod(Vector2[] points)

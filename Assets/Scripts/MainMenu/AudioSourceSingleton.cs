@@ -16,4 +16,9 @@ public class AudioSourceSingleton : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+    public void SetAudio(float value)
+    {
+        AudioListener.volume = value;
+
+    }
 }

@@ -168,7 +168,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 6807370486467093656}
   - {fileID: 6807370486538397022}
-  speed: 2
+  speed: 8
 --- !u!1 &6807370485123324939
 GameObject:
   m_ObjectHideFlags: 0

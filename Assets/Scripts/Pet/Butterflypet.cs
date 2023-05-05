@@ -11,7 +11,7 @@ public class Butterflypet : MonoBehaviour
     [SerializeField] private GameObject[] waypoints;
     private int currentWaypointIndex = 0;
 
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed = 8f;
     private GameObject player;
 
     void Start()
@@ -25,6 +25,7 @@ public class Butterflypet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (petTriggerKey == 1 && Input.GetKeyDown(KeyCode.Space))
         {

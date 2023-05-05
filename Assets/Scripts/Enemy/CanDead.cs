@@ -19,9 +19,9 @@ public class CanDead : MonoBehaviour
     {
         if (collision.gameObject.name == "AttackHitBox")
         {
-            anim.Play("Death");
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            cc2d.enabled = !cc2d.enabled;
+            //anim.Play("Death");
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            //cc2d.enabled = !cc2d.enabled;
             Death();
 
         }
